@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://c17u6olytjsar"]
+
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_iebm0"]
+[ext_resource type="PackedScene" uid="uid://c1fwc511w24il" path="res://Scenes/block.tscn" id="2_go6jx"]
+[ext_resource type="PackedScene" uid="uid://b7jvgfich5sww" path="res://Scenes/player.tscn" id="3_0pj5p"]
+[ext_resource type="PackedScene" uid="uid://c43efhjrgkh0n" path="res://Scenes/hudActions.tscn" id="4_jgrv7"]
+
+[node name="Game" type="Node2D"]
+position = Vector2(40, 40)
+script = ExtResource("1_iebm0")
+blockScene = ExtResource("2_go6jx")
+unitScene = ExtResource("3_0pj5p")
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(330, 160)
+
+[node name="HUDActions" parent="." instance=ExtResource("4_jgrv7")]
+
+[connection signal="cancelPress" from="HUDActions" to="." method="_on_hud_actions_cancel_press"]
+[connection signal="waitPress" from="HUDActions" to="." method="_on_hud_actions_wait_press"]
