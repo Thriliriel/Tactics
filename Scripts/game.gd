@@ -10,19 +10,31 @@ var mapSize = Vector2i(1,1)
 var blockSize = Vector2(0,0)
 #store all blocks of the map
 var blocks
+#store all units
+var units = []
 #camera speed
 var cameraSpeed = 400
 #map to load
 var mapToLoad = "clearMap.json"
 #if a player is selected, no other can be selected
-var playedClicked = false
+var playedClicked = Node2D
 signal playerSelected
 signal playerDeselected
 
+#if a unit can attack another, keeps a list of attackable ones
+var foundEnemies
+#unit chosen to be attacked
+var attackedUnit: Node2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#hide the actions
+	#hide the actions and the target
 	$HUDActions.hide()
+	$HUDTarget.hide()
+	$CanvasLayer/ChooseUnit.hide()
+	$HUDConfirmAttack.hide()
+	
+	foundEnemies = []
 	
 	#draw the map
 	draw_map()
@@ -36,13 +48,15 @@ func _ready():
 	unit.node = firstNode
 	unit.lastNode = firstNode
 	blocks[firstNode].unit = unit
-	#manually bind the clicked signal of the unit to the calc_star
+	#manually bind the clicked signal of the unit to the calc_star, alongside other signals
 	unit.clicked.connect(calc_star.bind())
 	unit.cancelClick.connect(cancelMovement.bind())
+	unit.selectedTarget.connect(selectAttackTarget.bind())
 	playerSelected.connect(unit.selectAnotherPlayer.bind())
 	playerDeselected.connect(unit.deselectAnotherPlayer.bind())
 	#add child
 	add_child(unit)
+	units.append(unit)
 	
 	#another unit in the map, jjust to test
 	unit = unitScene.instantiate()
@@ -53,13 +67,15 @@ func _ready():
 	#set the unit node
 	unit.node = firstNode
 	unit.lastNode = firstNode
-	#manually bind the clicked signal of the unit to the calc_star
+	#manually bind the clicked signal of the unit to the calc_star, alongside other signals
 	unit.clicked.connect(calc_star.bind())
 	unit.cancelClick.connect(cancelMovement.bind())
+	unit.selectedTarget.connect(selectAttackTarget.bind())
 	playerSelected.connect(unit.selectAnotherPlayer.bind())
 	playerDeselected.connect(unit.deselectAnotherPlayer.bind())
 	#add child
 	add_child(unit)
+	units.append(unit)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -128,7 +144,7 @@ func draw_map():
 #when player click on unit, calculate possible route
 func calc_star(unit):
 	#there is a player selected
-	playedClicked = true
+	playedClicked = unit
 	playerSelected.emit()
 	
 	#print(len(blocks))
@@ -230,15 +246,16 @@ func controlHUDOptions(unit):
 			#for each of them, hide or show. Wait, Item and Cancel are default, so they are always there
 			#attack button
 			if child.name.contains("Attack"):
-				var foundEnemies = checkForEnemies(unit)
-				if foundEnemies:
+				foundEnemies = checkForEnemies(unit)
+				if !foundEnemies.is_empty():
 					child.show()
 				else:
 					child.hide()	
 
 #check is there is any unit nearby
 func checkForEnemies(unit): 
-	var found = false
+	#list with the enemies found nearby
+	var found = []
 	
 	#to check, get the blocks north, south, west and east
 	#Godot gets from the drawing by columns. So, to do so, index/size = column. index%size = row
@@ -252,22 +269,22 @@ func checkForEnemies(unit):
 	#west
 	var indx = unitCol * mapSize.y + (unitRow-1)
 	if blocks[indx].unit != null:
-		found = true
+		found.append(blocks[indx].unit)
 	#print("West: " + str(indx))
 	#east
 	indx = unitCol * mapSize.y + (unitRow+1)
 	if blocks[indx].unit != null:
-		found = true
+		found.append(blocks[indx].unit)
 	#print("East: " + str(indx))
 	#north
 	indx = (unitCol-1) * mapSize.y + unitRow
 	if blocks[indx].unit != null:
-		found = true
+		found.append(blocks[indx].unit)
 	#print("North: " + str(indx))
 	#south
 	indx = (unitCol+1) * mapSize.y + unitRow
 	if blocks[indx].unit != null:
-		found = true 
+		found.append(blocks[indx].unit)
 	#print("South: " + str(indx))
 	return found
 
@@ -275,6 +292,9 @@ func checkForEnemies(unit):
 func cancelMovement(unit):
 	#release the blocks
 	releaseBlocks(unit)
+	
+	#reset the units
+	resetUnits()
 	
 	$HUDActions.hide()
 
@@ -290,6 +310,46 @@ func cancelMovementHUD(unit):
 func _on_hud_actions_cancel_press(unit):
 	cancelMovementHUD(unit)
 
-
 func _on_hud_actions_wait_press():
 	$HUDActions.hide()
+
+func _on_hud_actions_attack_press(unit):
+	$HUDActions.hide()
+	
+	$CanvasLayer/ChooseUnit.show()
+	
+	#when attacking, the unit cant be clicked, and the possible enemies can be clicked to be selected only
+	unit.canClick = false
+	for enemy in foundEnemies:
+		enemy.possibleTarget = true
+	
+func selectAttackTarget(targetUnit):
+	attackedUnit = targetUnit
+	
+	$CanvasLayer/ChooseUnit.hide()
+	
+	#put the target at the position of the first enemy in the list
+	$HUDTarget.position = attackedUnit.position	
+	$HUDTarget.show()
+	
+	#also, show the confirmation attack image
+	$HUDConfirmAttack.position = attackedUnit.position - Vector2(30,30)
+	$HUDConfirmAttack.show()
+
+#attack unit!
+func charge():
+	print(attackedUnit.hp)
+	attackedUnit.hp -= playedClicked.attack - attackedUnit.defense
+	print(attackedUnit.hp)
+	
+	#reset stuff
+	$HUDTarget.hide()
+	$HUDConfirmAttack.hide()
+	attackedUnit = null
+	playedClicked = null
+	resetUnits()
+	
+#reset all units
+func resetUnits():
+	for un in units:
+		un.resetStuff()

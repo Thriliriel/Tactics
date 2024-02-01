@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhxqm2bylg3ak"]
+
+[ext_resource type="Script" path="res://Scripts/hudConfirmAttack.gd" id="1_01q35"]
+[ext_resource type="Texture2D" uid="uid://d1r5hnbt4f3n8" path="res://Images/crossedSwords.png" id="1_6hrsg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g7qbo"]
+size = Vector2(33, 32)
+
+[node name="HUDConfirmAttack" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_01q35")
+
+[node name="CrossedSwords" type="Sprite2D" parent="."]
+texture = ExtResource("1_6hrsg")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_g7qbo")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

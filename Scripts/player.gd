@@ -7,7 +7,10 @@ var lastNode: int
 #index of the node which needs to be freed
 var freeNode: int
 #if another unit is clicked, cannot select this one
-var otherClicked = false
+var canClick = true
+#also, player can be clicked to be selected as an attack target
+var possibleTarget = false
+signal selectedTarget
 
 #signal to unit clicked
 signal clicked
@@ -17,6 +20,8 @@ signal cancelClick
 var isClicked = false
 
 #unit's attributes and info
+#unit HP
+var hp: int
 #unit name
 var unitName: String
 #unit movement (determines the amount of nodes it can move)
@@ -41,6 +46,10 @@ func _ready():
 	freeNode = -1
 	#test
 	movement = 8
+	hp = 20
+	attack = 5
+	defense = 2
+	unitName = "Unit"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -48,11 +57,18 @@ func _process(delta):
 
 func _on_area_2d_input_event(viewport, event, shape_idx):	
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and !otherClicked:
+		#if being targeted as target for an attack
+		if event.button_index == MOUSE_BUTTON_LEFT and possibleTarget:
+			if event.is_pressed() && not event.is_echo():
+				#emit signal and set as clicked
+				selectedTarget.emit(self)
+		#if player wants to move this unit
+		elif event.button_index == MOUSE_BUTTON_LEFT and canClick:
 			if event.is_pressed() && not event.is_echo():
 				#emit signal and set as clicked
 				isClicked = true
 				clicked.emit(self)
+		#if player wants to cancel the action
 		elif event.button_index == MOUSE_BUTTON_RIGHT and isClicked: #can only cancel if unit is clicked
 			if event.is_pressed() && not event.is_echo():
 				#emit signal and set as not clicked
@@ -60,7 +76,13 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 				cancelClick.emit(self)
 				
 func selectAnotherPlayer():
-	otherClicked = true
+	canClick = false
 
 func deselectAnotherPlayer():
-	otherClicked = false
+	canClick = true
+	
+#reset the unit
+func resetStuff():
+	canClick = true
+	possibleTarget = false
+	isClicked = false

@@ -1,7 +1,7 @@
 extends Node2D
 
 #size of the map
-var mapSize = Vector2i(20,12)
+var mapSize = Vector2i(10,10)
 #size of each block
 var blockSize = Vector2(0,0)
 #json filename

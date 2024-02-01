@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://c17u6olytjsar"]
+[gd_scene load_steps=7 format=3 uid="uid://c17u6olytjsar"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_iebm0"]
 [ext_resource type="PackedScene" uid="uid://c1fwc511w24il" path="res://Scenes/block.tscn" id="2_go6jx"]
 [ext_resource type="PackedScene" uid="uid://b7jvgfich5sww" path="res://Scenes/player.tscn" id="3_0pj5p"]
 [ext_resource type="PackedScene" uid="uid://c43efhjrgkh0n" path="res://Scenes/hudActions.tscn" id="4_jgrv7"]
+[ext_resource type="PackedScene" uid="uid://c1e5e38r5o3u3" path="res://Scenes/hudTarget.tscn" id="5_adjq2"]
+[ext_resource type="PackedScene" uid="uid://bhxqm2bylg3ak" path="res://Scenes/hudConfirmAttack.tscn" id="6_uwiew"]
 
 [node name="Game" type="Node2D"]
 position = Vector2(40, 40)
@@ -16,5 +18,27 @@ position = Vector2(330, 160)
 
 [node name="HUDActions" parent="." instance=ExtResource("4_jgrv7")]
 
+[node name="HUDTarget" parent="." instance=ExtResource("5_adjq2")]
+
+[node name="HUDConfirmAttack" parent="." instance=ExtResource("6_uwiew")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ChooseUnit" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -140.5
+offset_right = 140.5
+offset_bottom = 34.0
+grow_horizontal = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Choose an unit to attack"
+
+[connection signal="attackPress" from="HUDActions" to="." method="_on_hud_actions_attack_press"]
 [connection signal="cancelPress" from="HUDActions" to="." method="_on_hud_actions_cancel_press"]
 [connection signal="waitPress" from="HUDActions" to="." method="_on_hud_actions_wait_press"]
+[connection signal="charge" from="HUDConfirmAttack" to="." method="charge"]

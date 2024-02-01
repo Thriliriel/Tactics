@@ -1036,5 +1036,6 @@ theme_override_fonts/font = SubResource("FontFile_koqt5")
 theme_override_font_sizes/font_size = 30
 text = "Cancel"
 
+[connection signal="pressed" from="AttackButton" to="." method="_on_attack_button_pressed"]
 [connection signal="pressed" from="WaitButton" to="." method="_on_wait_button_pressed"]
 [connection signal="pressed" from="CancelButton" to="." method="_on_cancel_button_pressed"]
