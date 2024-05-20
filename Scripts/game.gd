@@ -28,6 +28,9 @@ var attackedUnit: Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#update the local units file
+	$HTTPRequest.UpdateLocalUnitFile()
+	
 	#hide the actions and the target
 	$HUDActions.hide()
 	$HUDTarget.hide()
@@ -35,6 +38,10 @@ func _ready():
 	$HUDConfirmAttack.hide()
 	
 	foundEnemies = []
+	
+	#test
+	print(Playervariables.playerName)
+	print(Playervariables.playerId)
 	
 	#draw the map
 	draw_map()
@@ -341,6 +348,10 @@ func charge():
 	print(attackedUnit.hp)
 	attackedUnit.hp -= playedClicked.attack - attackedUnit.defense
 	print(attackedUnit.hp)
+	
+	#if attacked unit's hp is 0 or below, it is dead!
+	if attackedUnit.hp <= 0:
+		attackedUnit.queue_free()
 	
 	#reset stuff
 	$HUDTarget.hide()

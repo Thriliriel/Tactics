@@ -1,0 +1,133 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm6qo74dqlyn8"]
+
+[ext_resource type="Script" path="res://Scripts/signup.gd" id="1_i6o2b"]
+[ext_resource type="PackedScene" uid="uid://1p0vj2r0ss73" path="res://Scenes/request.tscn" id="2_jhhm8"]
+
+[node name="Signup" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 742.0
+offset_bottom = 399.0
+script = ExtResource("1_i6o2b")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -326.0
+offset_right = 326.0
+offset_bottom = 46.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Inform your e-mail, username and password"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Register" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -68.5
+offset_top = -52.0
+offset_right = 68.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Save"
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -137.0
+offset_top = -52.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Back"
+
+[node name="Email" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = -83.0
+offset_right = 129.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 26
+placeholder_text = "E-mail"
+alignment = 1
+
+[node name="User" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = -26.0
+offset_right = 129.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 26
+placeholder_text = "Username"
+alignment = 1
+
+[node name="Password" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = 31.0
+offset_right = 129.0
+offset_bottom = 83.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 26
+placeholder_text = "Password"
+alignment = 1
+secret = true
+secret_character = "*"
+
+[node name="Request" parent="." instance=ExtResource("2_jhhm8")]
+
+[node name="LoginAlert" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -186.5
+offset_top = 32.0
+offset_right = 186.5
+offset_bottom = 79.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 28
+text = "User or email not available!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AlertTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="pressed" from="Register" to="." method="_on_register_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="signedUp" from="Request" to="." method="_on_request_signed_up"]
+[connection signal="timeout" from="AlertTimer" to="." method="_on_alert_timer_timeout"]

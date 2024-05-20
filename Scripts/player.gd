@@ -47,7 +47,7 @@ func _ready():
 	#test
 	movement = 8
 	hp = 20
-	attack = 5
+	attack = 15
 	defense = 2
 	unitName = "Unit"
 

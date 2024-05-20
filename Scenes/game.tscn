@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c17u6olytjsar"]
+[gd_scene load_steps=8 format=3 uid="uid://c17u6olytjsar"]
 
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_iebm0"]
 [ext_resource type="PackedScene" uid="uid://c1fwc511w24il" path="res://Scenes/block.tscn" id="2_go6jx"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c43efhjrgkh0n" path="res://Scenes/hudActions.tscn" id="4_jgrv7"]
 [ext_resource type="PackedScene" uid="uid://c1e5e38r5o3u3" path="res://Scenes/hudTarget.tscn" id="5_adjq2"]
 [ext_resource type="PackedScene" uid="uid://bhxqm2bylg3ak" path="res://Scenes/hudConfirmAttack.tscn" id="6_uwiew"]
+[ext_resource type="PackedScene" uid="uid://1p0vj2r0ss73" path="res://Scenes/request.tscn" id="7_hbhsh"]
 
 [node name="Game" type="Node2D"]
 position = Vector2(40, 40)
@@ -37,6 +38,8 @@ size_flags_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 text = "Choose an unit to attack"
+
+[node name="HTTPRequest" parent="." instance=ExtResource("7_hbhsh")]
 
 [connection signal="attackPress" from="HUDActions" to="." method="_on_hud_actions_attack_press"]
 [connection signal="cancelPress" from="HUDActions" to="." method="_on_hud_actions_cancel_press"]

@@ -1,0 +1,99 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0yqudtxmnn1e"]
+
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_t1hpn"]
+[ext_resource type="PackedScene" uid="uid://1p0vj2r0ss73" path="res://Scenes/request.tscn" id="2_mjr3u"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t1hpn")
+
+[node name="Signup" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -99.0
+offset_bottom = 47.0
+grow_horizontal = 0
+text = "Sign Up"
+
+[node name="User" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.5
+offset_top = -15.5
+offset_right = 117.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "User"
+alignment = 1
+
+[node name="Password" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.0
+offset_top = 23.0
+offset_right = 118.0
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "Password"
+alignment = 1
+secret = true
+secret_character = "*"
+
+[node name="Login" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = 66.5
+offset_right = 49.5
+offset_bottom = 113.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Login
+"
+
+[node name="Request" parent="." instance=ExtResource("2_mjr3u")]
+position = Vector2(253, 223)
+
+[node name="LoginAlert" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -138.0
+offset_right = 138.0
+offset_bottom = 47.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 28
+text = "User or Password incorrect!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AlertTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="pressed" from="Signup" to="." method="_on_signup_pressed"]
+[connection signal="pressed" from="Login" to="." method="login"]
+[connection signal="logged" from="Request" to="." method="_on_request_logged"]
+[connection signal="timeout" from="AlertTimer" to="." method="_on_alert_timer_timeout"]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://1p0vj2r0ss73"]
+
+[ext_resource type="Script" path="res://Scripts/request.gd" id="1_a7n2e"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_a7n2e")
+
+[node name="WebRequest" type="HTTPRequest" parent="."]
+use_threads = true
+accept_gzip = false
