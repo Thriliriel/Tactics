@@ -1,22 +1,22 @@
 [gd_scene load_steps=4 format=3 uid="uid://b7jvgfich5sww"]
 
-[ext_resource type="Texture2D" uid="uid://c8lvy1fubmvhr" path="res://Images/knight.png" id="1_hpm17"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_s3sgs"]
+[ext_resource type="Texture2D" uid="uid://csqvxlunaxqi5" path="res://Images/1.png" id="2_xmebd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ehb4e"]
-size = Vector2(330, 410)
+size = Vector2(175, 220)
 
 [node name="Player" type="Node2D" groups=["unit"]]
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.2, 0.2)
 script = ExtResource("1_s3sgs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_hpm17")
+texture = ExtResource("2_xmebd")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-25, 5)
+position = Vector2(-2.49999, -15)
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_ehb4e")
 

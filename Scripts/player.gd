@@ -40,6 +40,14 @@ var magic: int
 var resistance: int
 #unit luck (for random and crazy stuff)
 var luck: int
+#unit constitution
+var constitution: int
+#id class
+var idClass: int
+#lvl
+var lvl: int
+#is it on team?
+var onteam: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -50,6 +58,8 @@ func _ready():
 	attack = 15
 	defense = 2
 	unitName = "Unit"
+	lvl = 1
+	onteam = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -1,3 +1,7 @@
+#links:
+#evolution: https://gamefaqs.gamespot.com/gba/921183-fire-emblem-the-sacred-stones/map/1711-class-promotion-chart
+#base stats: https://serenesforest.net/the-sacred-stones/characters/base-stats/
+
 extends Node2D
 
 #blocks scene

@@ -18,7 +18,7 @@ func _on_register_pressed():
 
 func _on_request_signed_up(code):
 	#if nope, nope
-	print(code)
+	#print(code)
 	if int(code) != 42:
 		$LoginAlert.show()
 		#start the timer (so the alert vanishes after a time)

@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqe85gcp08fld"]
+
+[ext_resource type="Script" path="res://Scripts/formation.gd" id="1_7jlwa"]
+[ext_resource type="PackedScene" uid="uid://c1fwc511w24il" path="res://Scenes/block.tscn" id="2_wrdek"]
+[ext_resource type="PackedScene" uid="uid://b7jvgfich5sww" path="res://Scenes/player.tscn" id="3_qged1"]
+[ext_resource type="PackedScene" uid="uid://b1pkpxxb2lka2" path="res://Scenes/tooltip.tscn" id="4_4ivbu"]
+
+[node name="Formation" type="Node2D"]
+position = Vector2(50, 50)
+script = ExtResource("1_7jlwa")
+blockScene = ExtResource("2_wrdek")
+unitScene = ExtResource("3_qged1")
+tooltipScene = ExtResource("4_4ivbu")
