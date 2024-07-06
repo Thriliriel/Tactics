@@ -6,8 +6,46 @@
 [ext_resource type="PackedScene" uid="uid://b1pkpxxb2lka2" path="res://Scenes/tooltip.tscn" id="4_4ivbu"]
 
 [node name="Formation" type="Node2D"]
-position = Vector2(50, 50)
 script = ExtResource("1_7jlwa")
 blockScene = ExtResource("2_wrdek")
 unitScene = ExtResource("3_qged1")
 tooltipScene = ExtResource("4_4ivbu")
+
+[node name="Map" type="Node2D" parent="."]
+position = Vector2(300, 110)
+
+[node name="LabelFormation" type="Label" parent="."]
+offset_left = 330.0
+offset_top = 61.0
+offset_right = 426.0
+offset_bottom = 84.0
+text = "FORMATION"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelUnits" type="Label" parent="."]
+offset_left = 324.0
+offset_top = 302.0
+offset_right = 420.0
+offset_bottom = 325.0
+text = "UNITS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Freeunits" type="Node2D" parent="."]
+position = Vector2(370, 350)
+
+[node name="Block1" parent="Freeunits" instance=ExtResource("2_wrdek")]
+position = Vector2(-80, 0)
+
+[node name="Block2" parent="Freeunits" instance=ExtResource("2_wrdek")]
+position = Vector2(-40, 0)
+
+[node name="Block3" parent="Freeunits" instance=ExtResource("2_wrdek")]
+position = Vector2(0, 0)
+
+[node name="Block4" parent="Freeunits" instance=ExtResource("2_wrdek")]
+position = Vector2(40, 0)
+
+[node name="Block5" parent="Freeunits" instance=ExtResource("2_wrdek")]
+position = Vector2(80, 0)

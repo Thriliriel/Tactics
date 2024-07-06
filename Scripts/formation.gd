@@ -17,8 +17,8 @@ var units = []
 # Called when the node enters the scene tree for the first time.
 func _ready():	
 	#prepare the map
-	var posX = 50
-	var posY = 50
+	var posX = 0
+	var posY = 0
 	
 	for i in mapSize.x:
 		#update x
@@ -35,7 +35,7 @@ func _ready():
 			newBlock.terrainType = 0
 			
 			#add in the game
-			add_child(newBlock)
+			$Map.add_child(newBlock)
 			
 			#add to map, to use later
 			blocks.append(newBlock)
@@ -63,8 +63,6 @@ func _ready():
 		var unit = unitScene.instantiate()
 		#image
 		unit.get_node("Sprite2D").texture = new_texture
-		#position of the unit
-		unit.position = blocks[nodeUsed].position
 		
 		#attributes
 		unit.unitName = unitPlayer.name
@@ -95,16 +93,34 @@ Movement = '+str(unit.movement)+'
 Resistance = '+str(unit.resistance)+'
 Skill = '+str(unit.skill)+'
 Speed = '+str(unit.speed)
-		
-		#set the unit node
-		unit.node = nodeUsed
-		unit.lastNode = nodeUsed
-		blocks[nodeUsed].unit = unit
+
 		#manually bind the signals for tooltip
 		unit.get_node("Area2D").mouse_entered.connect(createTooltip.bind(unit, textTp))
 		unit.get_node("Area2D").mouse_exited.connect(destroyTooltip.bind(unit))
-		#add child
-		add_child(unit)
+
+		#if unit is on team, go to the map. Otherwise, free unit
+		if unit.onteam == 1:
+			#position of the unit
+			unit.position = blocks[nodeUsed].position
+			#set the unit node
+			unit.node = nodeUsed
+			unit.lastNode = nodeUsed
+			blocks[nodeUsed].unit = unit	
+		
+			#add child
+			$Map.add_child(unit)
+		else:
+			var target = findFreeunitnode()
+			#print(target.position)
+			if target != null:
+				#position of the unit
+				unit.position = target.position
+				target.unit = unit
+				
+				$Freeunits.add_child(unit)
+			else:
+				print("Overflow!!!")
+				
 		units.append(unit)
 		
 		nodeUsed += 1
@@ -119,9 +135,16 @@ func _process(delta):
 	
 func createTooltip(unit, unitName):
 	var newTooltip = tooltipScene.instantiate()
-	newTooltip.DrawTooltip(unit.position, unitName)
+	newTooltip.DrawTooltip(unit.get_parent().position, unit, unitName)
 	unit.add_child(newTooltip)
 	newTooltip.scale = Vector2(newTooltip.scale.x*(1/unit.scale.x), newTooltip.scale.y*(1/unit.scale.y))
 	
 func destroyTooltip(unit):
 	unit.get_node("Tooltip").queue_free()
+	
+#find the next free node of Freeunits
+func findFreeunitnode():
+	for block in $Freeunits.get_children():
+		if block.unit == null:
+			return block
+	return null
