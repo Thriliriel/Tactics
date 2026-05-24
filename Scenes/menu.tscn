@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0yqudtxmnn1e"]
+[gd_scene format=3 uid="uid://d0yqudtxmnn1e"]
 
-[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_t1hpn"]
+[ext_resource type="Script" uid="uid://0vgtroidw826" path="res://Scripts/menu.gd" id="1_t1hpn"]
 [ext_resource type="PackedScene" uid="uid://1p0vj2r0ss73" path="res://Scenes/request.tscn" id="2_mjr3u"]
 
-[node name="Menu" type="Control"]
+[node name="Menu" type="Control" unique_id=1926083649]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,17 +12,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t1hpn")
 
-[node name="Signup" type="Button" parent="."]
+[node name="Signup" type="Button" parent="." unique_id=294192163]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -99.0
-offset_bottom = 47.0
+offset_left = -130.0
+offset_bottom = 65.0
 grow_horizontal = 0
+theme_override_font_sizes/font_size = 26
 text = "Sign Up"
 
-[node name="User" type="LineEdit" parent="."]
+[node name="User" type="LineEdit" parent="." unique_id=1938264846]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -38,7 +39,7 @@ grow_vertical = 2
 placeholder_text = "User"
 alignment = 1
 
-[node name="Password" type="LineEdit" parent="."]
+[node name="Password" type="LineEdit" parent="." unique_id=1599260908]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -56,7 +57,7 @@ alignment = 1
 secret = true
 secret_character = "*"
 
-[node name="Login" type="Button" parent="."]
+[node name="Login" type="Button" parent="." unique_id=1560082408]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -72,10 +73,10 @@ grow_vertical = 2
 text = "Login
 "
 
-[node name="Request" parent="." instance=ExtResource("2_mjr3u")]
+[node name="Request" parent="." unique_id=1785958700 instance=ExtResource("2_mjr3u")]
 position = Vector2(253, 223)
 
-[node name="LoginAlert" type="Label" parent="."]
+[node name="LoginAlert" type="Label" parent="." unique_id=1526933642]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -89,7 +90,7 @@ text = "User or Password incorrect!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AlertTimer" type="Timer" parent="."]
+[node name="AlertTimer" type="Timer" parent="." unique_id=1519186820]
 wait_time = 3.0
 one_shot = true
 

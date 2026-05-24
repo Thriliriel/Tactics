@@ -32,9 +32,9 @@ var attackedUnit: Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#update the local units file
-	$HTTPRequest.UpdateLocalUnitFile()
 	
+	#update the local units file
+	#HTTPRequest.UpdateLocalUnitFile()
 	#hide the actions and the target
 	$HUDActions.hide()
 	$HUDTarget.hide()
@@ -277,25 +277,32 @@ func checkForEnemies(unit):
 	#print("Row: " + str(unitRow))
 	#print("Col: " + str(unitCol))
 	
+	#boundary
+	var indexLimit = (mapSize.x * mapSize.y)
+	
 	#west
-	var indx = unitCol * mapSize.y + (unitRow-1)
-	if blocks[indx].unit != null:
-		found.append(blocks[indx].unit)
+	var indx = (unitCol-1) * mapSize.y + unitRow
+	if indx >= 0 and indx < indexLimit:
+		if blocks[indx].unit != null:
+			found.append(blocks[indx].unit)
 	#print("West: " + str(indx))
 	#east
-	indx = unitCol * mapSize.y + (unitRow+1)
-	if blocks[indx].unit != null:
-		found.append(blocks[indx].unit)
+	indx = (unitCol+1) * mapSize.y + unitRow
+	if indx >= 0 and indx < indexLimit:
+		if blocks[indx].unit != null:
+			found.append(blocks[indx].unit)
 	#print("East: " + str(indx))
 	#north
-	indx = (unitCol-1) * mapSize.y + unitRow
-	if blocks[indx].unit != null:
-		found.append(blocks[indx].unit)
+	indx = unitCol * mapSize.y + (unitRow-1)
+	if indx >= 0 and indx < indexLimit:
+		if blocks[indx].unit != null:
+			found.append(blocks[indx].unit)
 	#print("North: " + str(indx))
 	#south
-	indx = (unitCol+1) * mapSize.y + unitRow
-	if blocks[indx].unit != null:
-		found.append(blocks[indx].unit)
+	indx = unitCol * mapSize.y + (unitRow+1)
+	if indx >= 0 and indx < indexLimit:
+		if blocks[indx].unit != null:
+			found.append(blocks[indx].unit)
 	#print("South: " + str(indx))
 	return found
 

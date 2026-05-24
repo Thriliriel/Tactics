@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://c43efhjrgkh0n"]
+[gd_scene format=3 uid="uid://c43efhjrgkh0n"]
 
-[ext_resource type="Script" path="res://Scripts/hudActions.gd" id="1_6c5qd"]
+[ext_resource type="Script" uid="uid://dk7qj742kdsq3" path="res://Scripts/hudActions.gd" id="1_6c5qd"]
 
 [sub_resource type="Theme" id="Theme_sbcqo"]
 
@@ -10,6 +10,15 @@
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -934,16 +943,24 @@ cache/0/30/0/kerning_overrides/26/0 = Vector2(0, 0)
 cache/0/30/0/kerning_overrides/27/0 = Vector2(0, 0)
 cache/0/30/0/kerning_overrides/28/0 = Vector2(0, 0)
 cache/0/30/0/kerning_overrides/30/0 = Vector2(0, 0)
+cache/0/40/0/ascent = 0.0
+cache/0/40/0/descent = 0.0
+cache/0/40/0/underline_position = 0.0
+cache/0/40/0/underline_thickness = 0.0
+cache/0/40/0/scale = 1.0
 
-[node name="HUDActions" type="CanvasLayer"]
+[node name="HUDActions" type="CanvasLayer" unique_id=501156809]
 script = ExtResource("1_6c5qd")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 741.0
-offset_bottom = 401.0
+[node name="ColorRect" type="ColorRect" parent="." unique_id=940643934]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 0.803922)
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=760680487]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -953,10 +970,11 @@ offset_bottom = 23.0
 grow_horizontal = 2
 theme = SubResource("Theme_sbcqo")
 theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 40
 text = "Choose an Action"
 horizontal_alignment = 1
 
-[node name="ItemButton" type="Button" parent="." groups=["action"]]
+[node name="ItemButton" type="Button" parent="." unique_id=50417393 groups=["action"]]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -973,10 +991,10 @@ theme = SubResource("Theme_ixbhw")
 theme_type_variation = &"FlatButton"
 theme_override_colors/font_hover_color = Color(1, 0.396078, 0.329412, 1)
 theme_override_fonts/font = SubResource("FontFile_koqt5")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "Item"
 
-[node name="AttackButton" type="Button" parent="." groups=["action"]]
+[node name="AttackButton" type="Button" parent="." unique_id=960703771 groups=["action"]]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -993,10 +1011,10 @@ theme = SubResource("Theme_ixbhw")
 theme_type_variation = &"FlatButton"
 theme_override_colors/font_hover_color = Color(1, 0.396078, 0.329412, 1)
 theme_override_fonts/font = SubResource("FontFile_koqt5")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "Attack"
 
-[node name="WaitButton" type="Button" parent="." groups=["action"]]
+[node name="WaitButton" type="Button" parent="." unique_id=861848738 groups=["action"]]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -1013,10 +1031,10 @@ theme = SubResource("Theme_ixbhw")
 theme_type_variation = &"FlatButton"
 theme_override_colors/font_hover_color = Color(1, 0.396078, 0.329412, 1)
 theme_override_fonts/font = SubResource("FontFile_koqt5")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "Wait"
 
-[node name="CancelButton" type="Button" parent="." groups=["action"]]
+[node name="CancelButton" type="Button" parent="." unique_id=1894612422 groups=["action"]]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -1033,7 +1051,7 @@ theme = SubResource("Theme_ixbhw")
 theme_type_variation = &"FlatButton"
 theme_override_colors/font_hover_color = Color(1, 0.396078, 0.329412, 1)
 theme_override_fonts/font = SubResource("FontFile_koqt5")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "Cancel"
 
 [connection signal="pressed" from="AttackButton" to="." method="_on_attack_button_pressed"]

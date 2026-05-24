@@ -1,0 +1,141 @@
+-- ==========================================
+-- 1. BASE CLASSES / FIRST TIER
+-- ==========================================
+-- Standard Infantry, Armored & Rogues
+INSERT INTO class (name) VALUES ('Lord');
+INSERT INTO class (name) VALUES ('Mercenary');
+INSERT INTO class (name) VALUES ('Myrmidon');
+INSERT INTO class (name) VALUES ('Fighter');
+INSERT INTO class (name) VALUES ('Brigand');
+INSERT INTO class (name) VALUES ('Pirate');
+INSERT INTO class (name) VALUES ('Archer');
+INSERT INTO class (name) VALUES ('Knight');
+INSERT INTO class (name) VALUES ('Thief');
+
+-- Mounted & Flying
+INSERT INTO class (name) VALUES ('Cavalier');
+INSERT INTO class (name) VALUES ('Pegasus Knight');
+INSERT INTO class (name) VALUES ('Wyvern Rider');
+
+-- Magic & Staff Users
+INSERT INTO class (name) VALUES ('Mage');
+INSERT INTO class (name) VALUES ('Monk');
+INSERT INTO class (name) VALUES ('Priest');
+INSERT INTO class (name) VALUES ('Cleric');
+INSERT INTO class (name) VALUES ('Shaman');
+
+-- Unique Special Base Classes
+INSERT INTO class (name) VALUES ('Dancer');
+INSERT INTO class (name) VALUES ('Manakete');
+
+
+-- ==========================================
+-- 2. PROMOTED CLASSES / SECOND TIER
+-- ==========================================
+-- Combat & Armored Masters
+INSERT INTO class (name) VALUES ('Great Lord');
+INSERT INTO class (name) VALUES ('Hero');
+INSERT INTO class (name) VALUES ('Swordmaster');
+INSERT INTO class (name) VALUES ('Warrior');
+INSERT INTO class (name) VALUES ('Berserker');
+INSERT INTO class (name) VALUES ('Sniper');
+INSERT INTO class (name) VALUES ('General');
+
+-- Mounted & Flying Masters
+INSERT INTO class (name) VALUES ('Paladin');
+INSERT INTO class (name) VALUES ('Great Knight');
+INSERT INTO class (name) VALUES ('Ranger');
+INSERT INTO class (name) VALUES ('Falcon Knight');
+INSERT INTO class (name) VALUES ('Wyvern Lord');
+INSERT INTO class (name) VALUES ('Wyvern Knight');
+
+-- Magic & Rogue Masters
+INSERT INTO class (name) VALUES ('Sage');
+INSERT INTO class (name) VALUES ('Mage Knight');
+INSERT INTO class (name) VALUES ('Bishop');
+INSERT INTO class (name) VALUES ('Valkyrie');
+INSERT INTO class (name) VALUES ('Druid');
+INSERT INTO class (name) VALUES ('Summoner');
+INSERT INTO class (name) VALUES ('Rogue');
+INSERT INTO class (name) VALUES ('Assassin');
+
+
+-- ==========================================
+-- PLAYABLE UNITS INSERTS
+-- ==========================================
+
+-- Eirika (Lord - ID: 1)
+INSERT INTO unit (name, hp, movement, attack, defense, skill, speed, magic, resistence, luck, constitution, idclass, lvl)
+VALUES ('Eirika', 16, 5, 4, 3, 8, 9, 0, 1, 5, 5, 1, 1);
+
+-- Ephraim (Lord variant, matching ID: 1 or custom)
+INSERT INTO unit (name, hp, movement, attack, defense, skill, speed, magic, resistence, luck, constitution, idclass, lvl)
+VALUES ('Ephraim', 23, 5, 8, 7, 9, 11, 0, 2, 8, 8, 1, 4);
+
+-- Seth (Paladin - ID: 27)
+INSERT INTO unit (name, hp, movement, attack, defense, skill, speed, magic, resistence, luck, constitution, idclass, lvl)
+VALUES ('Seth', 30, 8, 14, 11, 13, 12, 0, 8, 13, 11, 27, 1);
+
+-- Franz (Cavalier - ID: 10)
+INSERT INTO unit (name, hp, movement, attack, defense, skill, speed, magic, resistence, luck, constitution, idclass, lvl)
+VALUES ('Franz', 20, 7, 7, 6, 5, 7, 0, 1, 2, 9, 10, 1);
+
+-- Gilliam (Knight - ID: 8)
+INSERT INTO unit (name, hp, movement, attack, defense, skill, speed, magic, resistence, luck, constitution, idclass, lvl)
+VALUES ('Gilliam', 26, 4, 9, 9, 6, 3, 0, 3, 3, 14, 8, 4);
+
+-- Moulder (Priest - ID: 15)
+INSERT INTO unit (name, hp, movement, attack, defense, skill, speed, magic, resistence, luck, constitution, idclass, lvl)
+VALUES ('Moulder', 20, 5, 4, 2, 6, 9, 4, 5, 1, 9, 15, 3);
+
+-- Vanessa (Pegasus Knight - ID: 11)
+INSERT INTO unit (name, hp, movement, attack, defense, skill, speed, magic, resistence, luck, constitution, idclass, lvl)
+VALUES ('Vanessa', 17, 7, 5, 6, 7, 11, 0, 6, 4, 5, 11, 1);
+
+-- Garcia (Fighter - ID: 4)
+INSERT INTO unit (name, hp, movement, attack, defense, skill, speed, magic, resistence, luck, constitution, idclass, lvl)
+VALUES ('Garcia', 28, 5, 8, 5, 7, 7, 0, 1, 3, 14, 4, 4);
+
+-- Neimi (Archer - ID: 7)
+INSERT INTO unit (name, hp, movement, attack, defense, skill, speed, magic, resistence, luck, constitution, idclass, lvl)
+VALUES ('Neimi', 17, 5, 4, 3, 5, 6, 0, 2, 4, 5, 7, 1);
+
+-- Colm (Thief - ID: 9)
+INSERT INTO unit (name, hp, movement, attack, defense, skill, speed, magic, resistence, luck, constitution, idclass, lvl)
+VALUES ('Colm', 18, 6, 4, 3, 4, 10, 0, 1, 8, 6, 9, 2);
+
+-- Artur (Monk - ID: 14)
+INSERT INTO unit (name, hp, movement, attack, defense, skill, speed, magic, resistence, luck, constitution, idclass, lvl)
+VALUES ('Artur', 19, 5, 6, 2, 6, 8, 6, 6, 2, 6, 14, 2);
+
+-- Lute (Mage - ID: 13)
+INSERT INTO unit (name, hp, movement, attack, defense, skill, speed, magic, resistence, luck, constitution, idclass, lvl)
+VALUES ('Lute', 17, 5, 6, 3, 6, 7, 6, 5, 8, 3, 13, 1);
+
+-- Joshua (Myrmidon - ID: 3)
+INSERT INTO unit (name, hp, movement, attack, defense, skill, speed, magic, resistence, luck, constitution, idclass, lvl)
+VALUES ('Joshua', 24, 5, 8, 5, 13, 14, 0, 2, 7, 8, 3, 5);
+
+-- Natasha (Cleric - ID: 16)
+INSERT INTO unit (name, hp, movement, attack, defense, skill, speed, magic, resistence, luck, constitution, idclass, lvl)
+VALUES ('Natasha', 18, 5, 2, 1, 4, 8, 2, 6, 6, 4, 16, 1);
+
+-- Tana (Pegasus Knight - ID: 11)
+INSERT INTO unit (name, hp, movement, attack, defense, skill, speed, magic, resistence, luck, constitution, idclass, lvl)
+VALUES ('Tana', 20, 7, 7, 6, 9, 13, 0, 7, 8, 5, 11, 4);
+
+-- Gerik (Mercenary - ID: 2)
+INSERT INTO unit (name, hp, movement, attack, defense, skill, speed, magic, resistence, luck, constitution, idclass, lvl)
+VALUES ('Gerik', 32, 5, 14, 10, 13, 13, 0, 4, 8, 13, 2, 10);
+
+-- Innes (Sniper - ID: 25)
+INSERT INTO unit (name, hp, movement, attack, defense, skill, speed, magic, resistence, luck, constitution, idclass, lvl)
+VALUES ('Innes', 31, 6, 14, 10, 13, 15, 0, 9, 14, 9, 25, 1);
+
+-- Tethys (Dancer - ID: 18)
+INSERT INTO unit (name, hp, movement, attack, defense, skill, speed, magic, resistence, luck, constitution, idclass, lvl)
+VALUES ('Tethys', 18, 5, 1, 5, 2, 12, 0, 4, 10, 5, 18, 1);
+
+-- Myrrh (Manakete - ID: 19)
+INSERT INTO unit (name, hp, movement, attack, defense, skill, speed, magic, resistence, luck, constitution, idclass, lvl)
+VALUES ('Myrrh', 15, 5, 3, 2, 1, 5, 0, 7, 3, 5, 19, 1);

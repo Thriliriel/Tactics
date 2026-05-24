@@ -1,38 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://cyerfvevfghjy"]
+[gd_scene format=3 uid="uid://cyerfvevfghjy"]
 
-[ext_resource type="Script" path="res://Scripts/choice.gd" id="1_7tw00"]
+[ext_resource type="Script" uid="uid://cacdav3qxtpm4" path="res://Scripts/choice.gd" id="1_7tw00"]
 
-[node name="Choice" type="Control"]
+[node name="Choice" type="Control" unique_id=1791831201]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 740.0
-offset_bottom = 398.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_7tw00")
 
-[node name="Playername" type="Label" parent="."]
+[node name="Playername" type="Label" parent="." unique_id=690126290]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -147.0
 offset_right = 147.0
-offset_bottom = 36.0
+offset_bottom = 64.0
 grow_horizontal = 2
+theme_override_font_sizes/font_size = 26
 text = "Welcome "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Signout" type="Button" parent="."]
+[node name="Signout" type="Button" parent="." unique_id=1441535480]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -76.0
-offset_bottom = 41.0
+offset_left = -124.0
+offset_bottom = 64.0
 grow_horizontal = 0
+theme_override_font_sizes/font_size = 26
 text = "Logout"
 
-[node name="Playbutton" type="Button" parent="."]
+[node name="Playbutton" type="Button" parent="." unique_id=1260155935]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -48,7 +52,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 36
 text = "Play"
 
-[node name="Formationbutton" type="Button" parent="."]
+[node name="Formationbutton" type="Button" parent="." unique_id=407230239]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
